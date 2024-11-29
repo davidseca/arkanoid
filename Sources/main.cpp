@@ -6,36 +6,53 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
+#define BALL_START_X 400
+#define BALL_START_Y 300
+#define PADDLE_START_X 350
+#define PADDLE_START_Y 550
+#define PADDLE_WIDTH 100
+#define PADDLE_HEIGHT 20
+#define PADDLE_SPEED 6.0f
+#define WALL_THICKNESS 20
+#define BRICK_ROWS 10
+#define BRICK_COLS 5
+#define BRICK_WIDTH 60
+#define BRICK_HEIGHT 30
+#define BRICK_START_X 50
+#define BRICK_START_Y 50
+
 int main() {
     if (!glfwInit()) {
         return -1;
     }
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Arkanoid Game", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Arkanoid Game", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
     }
 
     glfwMakeContextCurrent(window);
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, 800, 600, 0, -1, 1);
+    glOrtho(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, -1, 1);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    Paddle paddle(350, 550);
-    Ball ball(400, 300);
+    Paddle paddle(PADDLE_START_X, PADDLE_START_Y);
+    Ball ball(BALL_START_X, BALL_START_Y);
     std::vector<Brick> bricks;
-    Wall topWall(0, 0, 800, 20); // Example wall at the top of the screen
-    Wall leftWall(0, 0, 20, 600); // Wall on the left side of the screen
-    Wall rightWall(780, 0, 20, 600); // Wall on the right side of the screen
+    Wall topWall(0, 0, WINDOW_WIDTH, WALL_THICKNESS); // Wall at the top of the screen
+    Wall leftWall(0, 0, WALL_THICKNESS, WINDOW_HEIGHT); // Wall on the left side of the screen
+    Wall rightWall(WINDOW_WIDTH - WALL_THICKNESS, 0, WALL_THICKNESS, WINDOW_HEIGHT); // Wall on the right side of the screen
 
     // Create bricks
-    for (int row = 0; row < 10; ++row) {
-        for (int col = 0; col < 5; ++col) {
-            bricks.emplace_back(60 * row + 50, 30 * col + 50);
+    for (int row = 0; row < BRICK_ROWS; ++row) {
+        for (int col = 0; col < BRICK_COLS; ++col) {
+            bricks.emplace_back(BRICK_WIDTH * row + BRICK_START_X, BRICK_HEIGHT * col + BRICK_START_Y);
         }
     }
 
