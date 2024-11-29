@@ -2,6 +2,16 @@
 
 #include <GLFW/glfw3.h>
 
+Paddle::Paddle(float x, float y, float width, float height, float speed)
+    : x(x)
+    , y(y)
+    , width(width)
+    , height(height)
+    , speed(speed)
+{
+    // empty
+}
+
 float Paddle::getX() const {
     return x;
 }

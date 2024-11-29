@@ -16,10 +16,10 @@
 #define PADDLE_HEIGHT 20
 #define PADDLE_SPEED 6.0f
 #define WALL_THICKNESS 20
-#define BRICK_ROWS 10
-#define BRICK_COLS 5
+#define BRICK_ROWS 11
+#define BRICK_COLS 6
 #define BRICK_WIDTH 60
-#define BRICK_HEIGHT 30
+#define BRICK_HEIGHT 20
 #define BRICK_START_X 50
 #define BRICK_START_Y 50
 
@@ -42,7 +42,7 @@ int main() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    Paddle paddle(PADDLE_START_X, PADDLE_START_Y);
+    Paddle paddle(PADDLE_START_X, PADDLE_START_Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_SPEED);
     Ball ball(BALL_START_X, BALL_START_Y);
     std::vector<Brick> bricks;
     Wall topWall(0, 0, WINDOW_WIDTH, WALL_THICKNESS); // Wall at the top of the screen
@@ -52,7 +52,10 @@ int main() {
     // Create bricks
     for (int row = 0; row < BRICK_ROWS; ++row) {
         for (int col = 0; col < BRICK_COLS; ++col) {
-            bricks.emplace_back(BRICK_WIDTH * row + BRICK_START_X, BRICK_HEIGHT * col + BRICK_START_Y);
+            bricks.emplace_back(BRICK_WIDTH * row + BRICK_START_X + row * 5,
+                                BRICK_HEIGHT * col + BRICK_START_Y + col * 5,
+                                BRICK_WIDTH,
+                                BRICK_HEIGHT);
         }
     }
 

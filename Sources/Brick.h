@@ -5,8 +5,8 @@
 // Brick class
 class Brick {
 
-    public:
-    Brick(float x, float y) : x(x), y(y), width(60), height(20), destroyed(false) {}
+public:
+    Brick(float x, float y, float width, float height);
 
     float getX() const;
     void setX(float x);
