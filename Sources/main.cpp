@@ -1,69 +1,9 @@
+#include "Ball.h"
+#include "Brick.h"
+#include "Paddle.h"
+
 #include <GLFW/glfw3.h>
 #include <vector>
-
-// Paddle class
-class Paddle {
-public:
-    float x, y, width, height, speed;
-
-    Paddle(float x, float y) : x(x), y(y), width(100), height(20), speed(6.0f) {}
-
-    void move(float dx) {
-        x += dx;
-    }
-
-    void draw() {
-        glBegin(GL_QUADS);
-        glVertex2f(x, y);
-        glVertex2f(x + width, y);
-        glVertex2f(x + width, y + height);
-        glVertex2f(x, y + height);
-        glEnd();
-    }
-};
-
-// Ball class
-class Ball {
-public:
-    float x, y, radius, dx, dy;
-
-    Ball(float x, float y) : x(x), y(y), radius(10), dx(4.0f), dy(-4.0f) {}
-
-    void update() {
-        x += dx;
-        y += dy;
-    }
-
-    void draw() {
-        glBegin(GL_TRIANGLE_FAN);
-        glVertex2f(x, y);
-        for (int i = 0; i <= 20; ++i) {
-            float angle = i * 2.0f * 3.14159f / 20;
-            glVertex2f(x + cos(angle) * radius, y + sin(angle) * radius);
-        }
-        glEnd();
-    }
-};
-
-// Brick class
-class Brick {
-public:
-    float x, y, width, height;
-    bool destroyed;
-
-    Brick(float x, float y) : x(x), y(y), width(60), height(20), destroyed(false) {}
-
-    void draw() {
-        if (!destroyed) {
-            glBegin(GL_QUADS);
-            glVertex2f(x, y);
-            glVertex2f(x + width, y);
-            glVertex2f(x + width, y + height);
-            glVertex2f(x, y + height);
-            glEnd();
-        }
-    }
-};
 
 int main() {
     if (!glfwInit()) {
