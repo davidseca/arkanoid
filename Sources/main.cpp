@@ -1,5 +1,9 @@
 #include "Ball.h"
 #include "Brick.h"
+#include "Level.h"
+#include "LevelConfig.h"
+#include "Mapper.h"
+#include "FileUtils.h"
 #include "Paddle.h"
 #include "Wall.h"
 #include <cstdlib>
@@ -10,6 +14,7 @@
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+
 #define BALL_START_X 400
 #define BALL_START_Y 300
 #define PADDLE_START_X 350
@@ -47,6 +52,11 @@ void renderScore(int score) {
 }
 
 int main(int argc, char** argv) {
+//    Level easy = Level(Level::LevelType::EASY);
+//    std::string levelPath = easy.getPath();
+//    std::string levelJson = FileUtils::getFileAsText(levelPath);
+//    LevelConfig levelConfig = Mapper::mapFromJson(levelJson);
+
     if (!glfwInit()) {
         return -1;
     }

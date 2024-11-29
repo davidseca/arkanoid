@@ -1,0 +1,28 @@
+{
+  "window": {
+    "width": 800,
+    "height": 600
+  },
+  "ball": {
+    "start_x": 400,
+    "start_y": 300
+  },
+  "paddle": {
+    "start_x": 350,
+    "start_y": 550,
+    "width": 100,
+    "height": 20,
+    "speed": 6.0
+  },
+  "wall": {
+    "thickness": 20
+  },
+  "brick": {
+    "rows": 11,
+    "cols": 6,
+    "width": 60,
+    "height": 20,
+    "start_x": 50,
+    "start_y": 50
+  }
+}

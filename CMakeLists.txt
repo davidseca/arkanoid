@@ -16,6 +16,18 @@ add_executable(ArkanoidGame
                Sources/Paddle.h
                Sources/Wall.cpp
                Sources/Wall.h
+               Sources/FileUtils.cpp
+               Sources/FileUtils.h
+               Sources/Level.h
+               Sources/LevelConfig.h
+               Sources/Mapper.cpp
+               Sources/Mapper.h
                Sources/main.cpp)
 
-target_link_libraries(ArkanoidGame OpenGL::GL GLUT::GLUT glfw)
+target_link_libraries(ArkanoidGame
+    PUBLIC
+        OpenGL::GL
+        GLUT::GLUT
+        glfw
+)
+add_executable(Sources_main Sources/main.cpp)
