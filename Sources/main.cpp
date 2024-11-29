@@ -23,7 +23,18 @@
 #define BRICK_START_X 50
 #define BRICK_START_Y 50
 
-int main() {
+void resetGame(Paddle &paddle, Ball &ball, std::vector<Brick> &bricks) {
+    paddle.setX(PADDLE_START_X);
+    paddle.setY(PADDLE_START_Y);
+    ball.setX(BALL_START_X);
+    ball.setY(BALL_START_Y);
+
+    for (auto &brick : bricks) {
+        brick.setDestroyed(false);
+    }
+}
+
+int main(int argc, char** argv) {
     if (!glfwInit()) {
         return -1;
     }
@@ -83,8 +94,11 @@ int main() {
         if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > WINDOW_WIDTH) {
             ball.setDx(-ball.getDx());
         }
+
         if (ball.getY() - ball.getRadius() < topWall.getHeight()) {
             ball.setDy(-ball.getDy());
+        } else if (ball.getY() + ball.getRadius() > WINDOW_HEIGHT) {
+            resetGame(paddle, ball, bricks);
         }
 
         for (auto& brick : bricks) {
