@@ -80,7 +80,7 @@ int main() {
         }
 
         // Collision detection and response (simplified)
-        if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > 800) {
+        if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > WINDOW_WIDTH) {
             ball.setDx(-ball.getDx());
         }
         if (ball.getY() - ball.getRadius() < topWall.getHeight()) {
@@ -92,6 +92,7 @@ int main() {
                 ball.getY() + ball.getRadius() > brick.getY() && ball.getY() - ball.getRadius() < brick.getY() + brick.getHeight()) {
                 ball.setDy(-ball.getDy());
                 brick.setDestroyed(true);
+                break; // Exit the loop after breaking one brick
             }
         }
 
