@@ -2,7 +2,7 @@
 #include "Brick.h"
 #include "Paddle.h"
 #include "Wall.h"
-
+#include <cstdlib>
 #include <GL/glut.h>
 #include <GLFW/glfw3.h>
 #include <vector>
@@ -109,7 +109,7 @@ int main(int argc, char** argv) {
         }
 
         if (ball.getY() - ball.getRadius() < topWall.getHeight()) {
-            ball.setDy(-ball.getDy());
+            ball.setDy(-ball.getDy() + (rand() % 3 - 1) * 0.1f);
         } else if (ball.getY() + ball.getRadius() > WINDOW_HEIGHT) {
             resetGame(paddle, ball, bricks);
             score = 0;
