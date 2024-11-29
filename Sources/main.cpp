@@ -6,6 +6,7 @@
 #include <GL/glut.h>
 #include <GLFW/glfw3.h>
 #include <vector>
+#include <string>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -23,7 +24,6 @@
 #define BRICK_HEIGHT 20
 #define BRICK_START_X 50
 #define BRICK_START_Y 50
-#include <string>
 
 void resetGame(Paddle &paddle, Ball &ball, std::vector<Brick> &bricks) {
     paddle.setX(PADDLE_START_X);
