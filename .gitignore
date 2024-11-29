@@ -1,0 +1,53 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# C++ specific files
+*.d
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
+*.exe
+*.out
+*.app
+*.gch
+*.pch
+*.ilk
+*.pdb
+*.mod
+*.smod
+*.lai
+*.la
+
+# CMake build directories
+build/
+cmake-build-*/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Other IDEs and editors
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# JetBrains Rider
+.idea/
+*.sln.iml
