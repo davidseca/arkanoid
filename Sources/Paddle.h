@@ -1,24 +1,33 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-
 // Paddle class
 class Paddle {
-public:
-    float x, y, width, height, speed;
 
+    public:
     Paddle(float x, float y) : x(x), y(y), width(100), height(20), speed(6.0f) {}
 
-    void move(float dx) {
-        x += dx;
-    }
+        float getX() const;
+        void setX(float x);
 
-    void draw() {
-        glBegin(GL_QUADS);
-        glVertex2f(x, y);
-        glVertex2f(x + width, y);
-        glVertex2f(x + width, y + height);
-        glVertex2f(x, y + height);
-        glEnd();
-    }
+        float getY() const;
+        void setY(float y);
+
+        float getWidth() const;
+        void setWidth(float width);
+
+        float getHeight() const;
+        void setHeight(float height);
+
+        float getSpeed() const;
+        void setSpeed(float speed);
+
+        void move(float dx);
+        void draw();
+
+private:
+    float x;
+    float y;
+    float width;
+    float height;
+    float speed;
 };

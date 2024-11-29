@@ -40,18 +40,18 @@ int main() {
 
         // Paddle movement
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-            paddle.move(-paddle.speed);
+            paddle.move(-paddle.getSpeed());
         }
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-            paddle.move(paddle.speed);
+            paddle.move(paddle.getSpeed());
         }
 
         // Ball movement
         ball.update();
 
         // Collision detection and response (simplified)
-        if (ball.getX() + ball.getRadius() > paddle.x && ball.getX() - ball.getRadius() < paddle.x + paddle.width &&
-            ball.getY() + ball.getRadius() > paddle.y && ball.getY() - ball.getRadius() < paddle.y + paddle.height) {
+        if (ball.getX() + ball.getRadius() > paddle.getX() && ball.getX() - ball.getRadius() < paddle.getX() + paddle.getWidth() &&
+            ball.getY() + ball.getRadius() > paddle.getY() && ball.getY() - ball.getRadius() < paddle.getY() + paddle.getHeight()) {
             ball.setDy(-ball.getDy());
         }
 
