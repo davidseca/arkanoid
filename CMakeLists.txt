@@ -13,6 +13,8 @@ add_executable(ArkanoidGame
                Sources/Brick.h
                Sources/Paddle.cpp
                Sources/Paddle.h
+               Sources/Wall.cpp
+               Sources/Wall.h
                Sources/main.cpp)
 
 target_link_libraries(ArkanoidGame OpenGL::GL glfw)

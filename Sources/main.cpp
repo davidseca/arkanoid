@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include "Brick.h"
 #include "Paddle.h"
+#include "Wall.h"
 
 #include <GLFW/glfw3.h>
 #include <vector>
@@ -27,6 +28,9 @@ int main() {
     Paddle paddle(350, 550);
     Ball ball(400, 300);
     std::vector<Brick> bricks;
+    Wall topWall(0, 0, 800, 20); // Example wall at the top of the screen
+    Wall leftWall(0, 0, 20, 600); // Wall on the left side of the screen
+    Wall rightWall(780, 0, 20, 600); // Wall on the right side of the screen
 
     // Create bricks
     for (int i = 0; i < 10; ++i) {
@@ -54,7 +58,10 @@ int main() {
             ball.getY() + ball.getRadius() > paddle.getY() && ball.getY() - ball.getRadius() < paddle.getY() + paddle.getHeight()) {
             ball.setDy(-ball.getDy());
         }
-
+// Collision detection and response (simplified)
+if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > 800) {
+    ball.setDx(-ball.getDx());
+}
         for (auto& brick : bricks) {
             if (!brick.isDestroyed() && ball.getX() + ball.getRadius() > brick.getX() && ball.getX() - ball.getRadius() < brick.getX() + brick.getWidth() &&
                 ball.getY() + ball.getRadius() > brick.getY() && ball.getY() - ball.getRadius() < brick.getY() + brick.getHeight()) {
@@ -69,6 +76,9 @@ int main() {
         for (auto& brick : bricks) {
             brick.draw();
         }
+        topWall.draw();
+        leftWall.draw();
+        rightWall.draw();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
