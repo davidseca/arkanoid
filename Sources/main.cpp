@@ -43,10 +43,10 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Paddle movement
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS && paddle.getX() > leftWall.getWidth()) {
             paddle.move(-paddle.getSpeed());
         }
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS && paddle.getX() + paddle.getWidth() < rightWall.getX()) {
             paddle.move(paddle.getSpeed());
         }
 
@@ -62,6 +62,9 @@ int main() {
         // Collision detection and response (simplified)
         if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > 800) {
             ball.setDx(-ball.getDx());
+        }
+        if (ball.getY() - ball.getRadius() < topWall.getHeight()) {
+            ball.setDy(-ball.getDy());
         }
 
         for (auto& brick : bricks) {
