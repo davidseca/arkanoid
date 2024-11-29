@@ -3,6 +3,7 @@
 #include "Paddle.h"
 #include "Wall.h"
 
+#include <GL/glut.h>
 #include <GLFW/glfw3.h>
 #include <vector>
 
@@ -22,6 +23,7 @@
 #define BRICK_HEIGHT 20
 #define BRICK_START_X 50
 #define BRICK_START_Y 50
+#include <string>
 
 void resetGame(Paddle &paddle, Ball &ball, std::vector<Brick> &bricks) {
     paddle.setX(PADDLE_START_X);
@@ -32,6 +34,16 @@ void resetGame(Paddle &paddle, Ball &ball, std::vector<Brick> &bricks) {
     for (auto &brick : bricks) {
         brick.setDestroyed(false);
     }
+ }
+
+void renderScore(int score) {
+    std::string scoreText = "Score: " + std::to_string(score);
+    glColor3f(0.0f, 0.0f, 1.0f); // Set color to blue
+    glRasterPos2f(WINDOW_WIDTH - 100, 20); // Position at the top right
+    for (char c : scoreText) {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c);
+    }
+    glColor3f(1.0f, 1.0f, 1.0f); // Set color back to white
 }
 
 int main(int argc, char** argv) {
@@ -55,6 +67,7 @@ int main(int argc, char** argv) {
 
     Paddle paddle(PADDLE_START_X, PADDLE_START_Y, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_SPEED);
     Ball ball(BALL_START_X, BALL_START_Y);
+    int score = 0;
     std::vector<Brick> bricks;
     Wall topWall(0, 0, WINDOW_WIDTH, WALL_THICKNESS); // Wall at the top of the screen
     Wall leftWall(0, 0, WALL_THICKNESS, WINDOW_HEIGHT); // Wall on the left side of the screen
@@ -99,6 +112,7 @@ int main(int argc, char** argv) {
             ball.setDy(-ball.getDy());
         } else if (ball.getY() + ball.getRadius() > WINDOW_HEIGHT) {
             resetGame(paddle, ball, bricks);
+            score = 0;
         }
 
         for (auto& brick : bricks) {
@@ -106,6 +120,7 @@ int main(int argc, char** argv) {
                 ball.getY() + ball.getRadius() > brick.getY() && ball.getY() - ball.getRadius() < brick.getY() + brick.getHeight()) {
                 ball.setDy(-ball.getDy());
                 brick.setDestroyed(true);
+                score++;
                 break; // Exit the loop after breaking one brick
             }
         }
@@ -119,6 +134,7 @@ int main(int argc, char** argv) {
         topWall.draw();
         leftWall.draw();
         rightWall.draw();
+        renderScore(score);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
