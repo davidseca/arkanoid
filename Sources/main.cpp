@@ -33,9 +33,9 @@ int main() {
     Wall rightWall(780, 0, 20, 600); // Wall on the right side of the screen
 
     // Create bricks
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 5; ++j) {
-            bricks.emplace_back(60 * i + 50, 30 * j + 50);
+    for (int row = 0; row < 10; ++row) {
+        for (int col = 0; col < 5; ++col) {
+            bricks.emplace_back(60 * row + 50, 30 * col + 50);
         }
     }
 
@@ -58,10 +58,12 @@ int main() {
             ball.getY() + ball.getRadius() > paddle.getY() && ball.getY() - ball.getRadius() < paddle.getY() + paddle.getHeight()) {
             ball.setDy(-ball.getDy());
         }
-// Collision detection and response (simplified)
-if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > 800) {
-    ball.setDx(-ball.getDx());
-}
+
+        // Collision detection and response (simplified)
+        if (ball.getX() - ball.getRadius() < 0 || ball.getX() + ball.getRadius() > 800) {
+            ball.setDx(-ball.getDx());
+        }
+
         for (auto& brick : bricks) {
             if (!brick.isDestroyed() && ball.getX() + ball.getRadius() > brick.getX() && ball.getX() - ball.getRadius() < brick.getX() + brick.getWidth() &&
                 ball.getY() + ball.getRadius() > brick.getY() && ball.getY() - ball.getRadius() < brick.getY() + brick.getHeight()) {
