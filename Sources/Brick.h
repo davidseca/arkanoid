@@ -4,20 +4,31 @@
 
 // Brick class
 class Brick {
-public:
-    float x, y, width, height;
-    bool destroyed;
 
+    public:
     Brick(float x, float y) : x(x), y(y), width(60), height(20), destroyed(false) {}
 
-    void draw() {
-        if (!destroyed) {
-            glBegin(GL_QUADS);
-            glVertex2f(x, y);
-            glVertex2f(x + width, y);
-            glVertex2f(x + width, y + height);
-            glVertex2f(x, y + height);
-            glEnd();
-        }
-    }
+    float getX() const;
+    void setX(float x);
+
+    float getY() const;
+    void setY(float y);
+
+    float getWidth() const;
+    void setWidth(float width);
+
+    float getHeight() const;
+    void setHeight(float height);
+
+    bool isDestroyed() const;
+    void setDestroyed(bool destroyed);
+
+    void draw();
+
+private:
+    float x;
+    float y;
+    float width;
+    float height;
+    bool destroyed;
 };

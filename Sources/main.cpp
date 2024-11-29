@@ -56,10 +56,10 @@ int main() {
         }
 
         for (auto& brick : bricks) {
-            if (!brick.destroyed && ball.getX() + ball.getRadius() > brick.x && ball.getX() - ball.getRadius() < brick.x + brick.width &&
-                ball.getY() + ball.getRadius() > brick.y && ball.getY() - ball.getRadius() < brick.y + brick.height) {
+            if (!brick.isDestroyed() && ball.getX() + ball.getRadius() > brick.getX() && ball.getX() - ball.getRadius() < brick.getX() + brick.getWidth() &&
+                ball.getY() + ball.getRadius() > brick.getY() && ball.getY() - ball.getRadius() < brick.getY() + brick.getHeight()) {
                 ball.setDy(-ball.getDy());
-                brick.destroyed = true;
+                brick.setDestroyed(true);
             }
         }
 
