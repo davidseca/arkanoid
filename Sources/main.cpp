@@ -50,15 +50,15 @@ int main() {
         ball.update();
 
         // Collision detection and response (simplified)
-        if (ball.x + ball.radius > paddle.x && ball.x - ball.radius < paddle.x + paddle.width &&
-            ball.y + ball.radius > paddle.y && ball.y - ball.radius < paddle.y + paddle.height) {
-            ball.dy = -ball.dy;
+        if (ball.getX() + ball.getRadius() > paddle.x && ball.getX() - ball.getRadius() < paddle.x + paddle.width &&
+            ball.getY() + ball.getRadius() > paddle.y && ball.getY() - ball.getRadius() < paddle.y + paddle.height) {
+            ball.setDy(-ball.getDy());
         }
 
         for (auto& brick : bricks) {
-            if (!brick.destroyed && ball.x + ball.radius > brick.x && ball.x - ball.radius < brick.x + brick.width &&
-                ball.y + ball.radius > brick.y && ball.y - ball.radius < brick.y + brick.height) {
-                ball.dy = -ball.dy;
+            if (!brick.destroyed && ball.getX() + ball.getRadius() > brick.x && ball.getX() - ball.getRadius() < brick.x + brick.width &&
+                ball.getY() + ball.getRadius() > brick.y && ball.getY() - ball.getRadius() < brick.y + brick.height) {
+                ball.setDy(-ball.getDy());
                 brick.destroyed = true;
             }
         }

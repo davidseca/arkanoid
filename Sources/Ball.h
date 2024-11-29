@@ -1,28 +1,33 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-
-#include <cmath>
-
 // Ball class
 class Ball {
 public:
-    float x, y, radius, dx, dy;
 
-    Ball(float x, float y) : x(x), y(y), radius(10), dx(4.0f), dy(-4.0f) {}
+    Ball(float x, float y);
 
-    void update() {
-        x += dx;
-        y += dy;
-    }
+    float getX() const;
+    void setX(float x);
 
-    void draw() {
-        glBegin(GL_TRIANGLE_FAN);
-        glVertex2f(x, y);
-        for (int i = 0; i <= 20; ++i) {
-            float angle = i * 2.0f * 3.14159f / 20;
-            glVertex2f(x + cos(angle) * radius, y + sin(angle) * radius);
-        }
-        glEnd();
-    }
+    float getY() const;
+    void setY(float y);
+
+    float getRadius() const;
+    void setRadius(float radius);
+
+    float getDx() const;
+    void setDx(float dx);
+
+    float getDy() const;
+    void setDy(float dy);
+
+    void update();
+    void draw();
+
+private:
+    float x;
+    float y;
+    float radius;
+    float dx;
+    float dy;
 };
